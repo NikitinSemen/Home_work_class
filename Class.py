@@ -1,4 +1,10 @@
 class Category:
+    """Класс Категории товаров с атрибутами :
+    name = "Название категории товара
+    description = описание категории товара
+     products = товары входящие в категорию
+     Category_count = общее количество категорий
+     uniq_name = общее количество уникальных товаров"""
     name = str
     description = str
     products = list
@@ -12,6 +18,11 @@ class Category:
 
 
 class Product:
+    """Класс продукт, с атрибутами:
+    name = название продукта
+    description = описание продукта
+    price = цена продукта
+    quantity = количество продукта"""
     name = str
     description = str
     price = float
