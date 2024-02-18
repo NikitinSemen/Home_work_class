@@ -1,5 +1,5 @@
 import json
-from Class import Product
+from сlass import Product
 
 
 def get_json(file_name):
