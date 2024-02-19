@@ -4,10 +4,6 @@ class Product:
     description = описание продукта
     price = цена продукта
     quantity = количество продукта"""
-    name = str
-    description = str
-    price = float
-    quantity = int
 
     def __init__(self, name, description, price, quantity):
         self.name = name
@@ -24,14 +20,14 @@ class Category:
      Category_count = общее количество категорий
      uniq_name = общее количество уникальных товаров"""
     total = 0
-    unique_products_count = 0
+    unique_products_count = {}
 
     def __init__(self,
                  name: str,
                  description: str,
-                 products: list):
+                 products: list[Product]):
         self.name = name
         self.description = description
         self.products = products
         Category.total += 1
-        Category.unique_products_count = len(self.products)
+        Category.unique_products_count = len(set(products))
