@@ -23,7 +23,7 @@ class Category:
      products = товары входящие в категорию
      Category_count = общее количество категорий
      uniq_name = общее количество уникальных товаров"""
-    category_count = 0
+    total = 0
     unique_products_count = 0
 
     def __init__(self,
@@ -33,3 +33,5 @@ class Category:
         self.name = name
         self.description = description
         self.products = products
+        Category.total += 1
+        Category.unique_products_count = len(self.products)
