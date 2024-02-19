@@ -21,13 +21,17 @@ def category():
     return Category('Смартфоны', 'телефоны с камерой и интернетом', ['iphone', 'samsung'])
 
 
+smartphone = Product('phone', '', 1212, 12)
+home_phone = Product('Iphone', '', 1212, 12)
+
+
 def test_categories_count():
     assert Category.total == 0
 
-    Category('name_1', 'desc_1', ['iphone', 'samsung'])
+    Category('name_1', 'desc_1', products=[smartphone, home_phone])
     assert Category.total == 1
 
-    Category('name_2', 'desc_2', ['iphone', 'samsung'])
+    Category('name_2', 'desc_2', products=[smartphone, home_phone])
     assert Category.total == 2
 
 
@@ -37,9 +41,9 @@ def test_unique_products_count():
     bread = Product('bread', '', 20, 1)
 
     category = Category(
-        'name', 'desc', products=[cheap_milk, expensive_milk, bread]
+        'name', 'desc', products=[cheap_milk.name, expensive_milk.name, bread.name]
     )
-    assert category.unique_products_count == 3
+    assert category.unique_products_count == 2
 
 
 def test_init_category(category):
