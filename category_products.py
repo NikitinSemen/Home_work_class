@@ -10,8 +10,7 @@ class Product:
         self.description = description
         self.price = price
         self.quantity = quantity
-    def metod(self):
-        return self.name
+
 
 class Category:
     """Класс Категории товаров с атрибутами :
@@ -35,4 +34,3 @@ class Category:
         for product in products:
             Category.unique_products.add(product.name)
         Category.unique_products_count = len(Category.unique_products)
-
