@@ -1,7 +1,6 @@
 import pytest
-from сlass import Category
-
-from сlass import Product
+from category_products import Category
+from category_products import Product
 
 
 @pytest.fixture
@@ -18,10 +17,10 @@ def test_init(product_iphone):
 
 @pytest.fixture()
 def category():
-    return Category('Смартфоны', 'телефоны с камерой и интернетом', ['iphone', 'samsung'])
+    return Category('Смартфоны', 'телефоны с камерой и интернетом', products=[smartphone, home_phone])
 
 
-smartphone = Product('phone', '', 1212, 12)
+smartphone = Product('iphone', '', 1212, 12)
 home_phone = Product('Iphone', '', 1212, 12)
 
 
@@ -36,12 +35,12 @@ def test_categories_count():
 
 
 def test_unique_products_count():
-    cheap_milk = Product('milk', '', 10, 1)
-    expensive_milk = Product('milk', '', 100, 1)
-    bread = Product('bread', '', 20, 1)
+    iphone = Product('iphone', 'metal-black', 10, 1)
+    expensive_iphone = Product('iphone', 'green-sea', 100, 1)
+    samsung = Product('samsung', '', 20, 1)
 
     category = Category(
-        'name', 'desc', products=[cheap_milk.name, expensive_milk.name, bread.name]
+        'Смартфоны', 'телефоны с камерой и интернетом', products=[iphone, expensive_iphone, samsung]
     )
     assert category.unique_products_count == 2
 
@@ -49,4 +48,4 @@ def test_unique_products_count():
 def test_init_category(category):
     assert category.name == 'Смартфоны'
     assert category.description == 'телефоны с камерой и интернетом'
-    assert category.products == ['iphone', 'samsung']
+    assert category.products == category.products
