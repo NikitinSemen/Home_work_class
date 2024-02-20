@@ -10,7 +10,8 @@ class Product:
         self.description = description
         self.price = price
         self.quantity = quantity
-
+    def metod(self):
+        return self.name
 
 class Category:
     """Класс Категории товаров с атрибутами :
@@ -20,7 +21,8 @@ class Category:
      Category_count = общее количество категорий
      uniq_name = общее количество уникальных товаров"""
     total = 0
-    unique_products_count = {}
+    unique_products = set()
+    unique_products_count = 0
 
     def __init__(self,
                  name: str,
@@ -30,4 +32,7 @@ class Category:
         self.description = description
         self.products = products
         Category.total += 1
-        Category.unique_products_count = len(set(products))
+        for product in products:
+            Category.unique_products.add(product.name)
+        Category.unique_products_count = len(Category.unique_products)
+
