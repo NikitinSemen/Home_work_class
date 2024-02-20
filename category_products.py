@@ -25,6 +25,7 @@ class Product:
 
     @classmethod
     def new_product(cls, value):
+        """Метод для добавления нового товара в класс"""
         name, description, price, quantity = (value['name'], value['description'], value['price'], value['quantity'])
         return cls(name, description, price, quantity)
 
@@ -34,6 +35,8 @@ class Product:
 
     @change_price.setter
     def change_price(self, value):
+        """Сеттер для изменения цены, на случай попытки понижение цены
+        реализованна проверка"""
         if value <= 0:
             print("Введена неккоректная цена")
         elif self.price > value:
@@ -71,6 +74,7 @@ class Category:
         Category.unique_products_count = len(Category.unique_products)
 
     def add_product(self, obj_product):
+        """Добавляет обьект класса Product в список товара класса Category"""
         self.__products.append(obj_product)
         Category.total += 1
 
@@ -79,7 +83,8 @@ class Category:
 
     @property
     def list_products(self):
+        """Геттер для вывода товара, цены, колличества - в определенной форме"""
         list_prod = []
         for p in self.__products:
             list_prod.append(f'{p.name}, {p.price}руб. Остаток{p.price}')
-            return "".join(list_prod)
+            print("".join(list_prod))
