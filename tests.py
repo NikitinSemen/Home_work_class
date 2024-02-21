@@ -64,7 +64,7 @@ def test_unique_products_count():
 def test_init_category(category):
     assert category.name == 'Смартфоны'
     assert category.description == 'телефоны с камерой и интернетом'
-        # assert category.products == ['iphone', 'iphone']
+    assert category.products == ['iphone', 'iphone']
 
 # def test_list_products(category):
 # assert category.get_products() ==

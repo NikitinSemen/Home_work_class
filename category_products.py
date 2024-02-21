@@ -54,9 +54,9 @@ class Category:
     """Класс Категории товаров с атрибутами :
     name = "Название категории товара
     description = описание категории товара
-     products = товары входящие в категорию
-     Category_count = общее количество категорий
-     uniq_name = общее количество уникальных товаров"""
+    products = товары входящие в категорию (обьекты класса Product)
+    Category_count = общее количество категорий
+    uniq_name = общее количество уникальных товаров"""
     total = 0
     unique_products = set()
     unique_products_count = 0
