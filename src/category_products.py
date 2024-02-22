@@ -41,7 +41,9 @@ class Product:
         реализованна проверка"""
         if value <= 0:
             print("Введена неккоректная цена")
-        elif self.price > value:
+        elif self.__price < value:
+            self.__price = value
+        elif self.__price > value:
             while True:
                 user_input = input("Введенная цена ниже установленной, уверены что хотите понизить цену?(y/n)").lower()
 
@@ -89,6 +91,7 @@ class Category:
         list_prod = []
         for p in self.__products:
             list_prod.append(f'{p.name}, {p.price}руб. Остаток {p.quantity}')
-            return "".join(list_prod)
+            return list_prod
+
 
 

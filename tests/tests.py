@@ -71,8 +71,20 @@ def test_category_products_getter(category):
     assert category.products == 'iphone, 1212.0руб. Остаток 12'
 
 
-smart = Product('infinix', 'note 30, blue-green-pink', 12000.0, 12)
+@pytest.fixture()
+def infinix():
+    return Product('infinix', 'note 30, blue-green-pink', 12000.0, 12)
 
 
-def test_product_price():
-    assert smart.price(1000.0) == smart
+def test_price_setter(infinix):
+    assert infinix.price(12000.0) == 12000.0
+
+
+@pytest.fixture
+def infinix():
+    return Product('infinix', 'note 30, blue-green-pink', 12000.0, 12)
+
+
+def test_product_price(infinix):
+    infinix.price = 15000.0
+    assert infinix.price == 15000.0

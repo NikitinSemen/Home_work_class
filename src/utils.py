@@ -1,5 +1,5 @@
 import json
-from src.category_products import Product
+from src.category_products import Category
 
 
 def get_json(file_name):
@@ -7,4 +7,4 @@ def get_json(file_name):
     with open(file_name) as file:
         files = json.load(file)
         for f in files:
-            return Product(name=f, description=f, price=f, quantity=f)
+            return Category(name=f, description=f, products=f)
