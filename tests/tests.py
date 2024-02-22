@@ -1,6 +1,6 @@
 import pytest
-from category_products import Category
-from category_products import Product
+from src.category_products import Category
+from src.category_products import Product
 
 
 @pytest.fixture
@@ -33,11 +33,11 @@ def test_quantity(product_iphone):
 
 @pytest.fixture()
 def category():
-    return Category('Смартфоны', 'телефоны с камерой и интернетом', products=[smartphone.get_name(), home_phone.get_name()])
+    return Category('Смартфоны', 'телефоны с камерой и интернетом', products=[smartphone, home_phone])
 
 
-smartphone = Product('iphone', '', 1212, 12)
-home_phone = Product('Iphone', '', 1212, 12)
+smartphone = Product('iphone', '', 1212.0, 12)
+home_phone = Product('Iphone', '', 23232.0, 12)
 
 
 def test_categories_count():
@@ -64,7 +64,15 @@ def test_unique_products_count():
 def test_init_category(category):
     assert category.name == 'Смартфоны'
     assert category.description == 'телефоны с камерой и интернетом'
-    assert category.products == ['iphone', 'iphone']
+    assert category.products == 'iphone, 1212руб. Остаток1212'
 
-# def test_list_products(category):
-# assert category.get_products() ==
+
+def test_category_products_getter(category):
+    assert category.products == 'iphone, 1212.0руб. Остаток 12'
+
+
+smart = Product('infinix', 'note 30, blue-green-pink', 12000.0, 12)
+
+
+def test_product_price():
+    assert smart.price(1000.0) == smart
