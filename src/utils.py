@@ -1,5 +1,5 @@
 import json
-from category_products import Product
+from src.category_products import Product
 
 
 def get_json(file_name):

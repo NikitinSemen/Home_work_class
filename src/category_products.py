@@ -5,10 +5,13 @@ class Product:
     price = цена продукта
     quantity = количество продукта"""
 
-    def __init__(self, name, description, price, quantity):
+    def __init__(self, name: str,
+                 description: str,
+                 price: float,
+                 quantity: int):
         self.name = name
         self.description = description
-        self.price = price
+        self.__price = price
         self.quantity = quantity
 
     def get_name(self):
@@ -26,15 +29,14 @@ class Product:
     @classmethod
     def new_product(cls, value):
         """Метод для добавления нового товара в класс"""
-        name, description, price, quantity = (value['name'], value['description'], value['price'], value['quantity'])
-        return cls(name, description, price, quantity)
+        return cls(**value)
 
     @property
-    def change_price(self):
-        return self.price()
+    def price(self):
+        return self.__price
 
-    @change_price.setter
-    def change_price(self, value):
+    @price.setter
+    def price(self, value):
         """Сеттер для изменения цены, на случай попытки понижение цены
         реализованна проверка"""
         if value <= 0:
@@ -44,7 +46,7 @@ class Product:
                 user_input = input("Введенная цена ниже установленной, уверены что хотите понизить цену?(y/n)").lower()
 
                 if user_input == 'y':
-                    self.price = value
+                    self.__price = value
                     break
                 elif user_input == 'n':
                     break
@@ -82,9 +84,11 @@ class Category:
         return self.__products
 
     @property
-    def list_products(self):
+    def products(self):
         """Геттер для вывода товара, цены, колличества - в определенной форме"""
         list_prod = []
         for p in self.__products:
-            list_prod.append(f'{p.name}, {p.price}руб. Остаток{p.price}')
-            print("".join(list_prod))
+            list_prod.append(f'{p.name}, {p.price}руб. Остаток {p.quantity}')
+            return "".join(list_prod)
+
+
