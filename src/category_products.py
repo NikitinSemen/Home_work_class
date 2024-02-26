@@ -14,6 +14,9 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
+    def __str__(self):
+        return f'{self.name}, {self.price}.руб. Остаток: {self.quantity} шт.'
+
     def get_name(self):
         return self.name
 
@@ -52,8 +55,10 @@ class Product:
                     break
                 elif user_input == 'n':
                     break
-
-
+    def __add__(self, other):
+        first_prod = self.price * self.quantity
+        second_prod = other.price * other.quantity
+        return first_prod + second_prod
 class Category:
     """Класс Категории товаров с атрибутами :
     name = "Название категории товара
@@ -90,8 +95,11 @@ class Category:
         """Геттер для вывода товара, цены, колличества - в определенной форме"""
         list_prod = []
         for p in self.__products:
-            list_prod.append(f'{p.name}, {p.price}руб. Остаток {p.quantity}')
+            list_prod.append(Product)
             return list_prod
 
+    def __len__(self):
+        return len(self.__products)
 
-
+    def __str__(self):
+        return f'{self.name}, количество продуктов: {len(self.__products)}'
