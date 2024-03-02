@@ -1,6 +1,6 @@
 import pytest
-from src.category_products import Category
-from src.category_products import Product
+from src.category import Category
+from src.products import Product
 
 
 @pytest.fixture
@@ -9,6 +9,7 @@ def product_iphone():
 
 
 def test_init(product_iphone):
+    """Проверка инициализации класса Product"""
     assert product_iphone.name == 'iphone'
     assert product_iphone.price == 12000.0
     assert product_iphone.description == 'smartphone i not have takou'
@@ -32,7 +33,8 @@ def test_quantity(product_iphone):
 
 
 @pytest.fixture()
-def category():
+def category_1():
+    """Инициализация класса Category"""
     return Category('Смартфоны', 'телефоны с камерой и интернетом', products=[smartphone, home_phone])
 
 
@@ -41,6 +43,7 @@ home_phone = Product('Iphone', '', 23232.0, 12)
 
 
 def test_categories_count():
+    """Проверка счетчика категорий"""
     assert Category.total == 0
 
     Category('name_1', 'desc_1', products=[smartphone, home_phone])
@@ -61,30 +64,27 @@ def test_unique_products_count():
     assert category.unique_products_count == 2
 
 
-def test_init_category(category):
-    assert category.name == 'Смартфоны'
-    assert category.description == 'телефоны с камерой и интернетом'
-    assert category.products == 'iphone, 1212руб. Остаток1212'
-
-
-def test_category_products_getter(category):
-    assert category.products == 'iphone, 1212.0руб. Остаток 12'
-
-
 @pytest.fixture()
-def infinix():
-    return Product('infinix', 'note 30, blue-green-pink', 12000.0, 12)
+def category_1():
+    """Инициализация класса Category"""
+    return Category('Смартфоны', 'телефоны с камерой и интернетом', products=[smartphone])
 
 
-def test_price_setter(infinix):
-    assert infinix.price(12000.0) == 12000.0
+def test_init_category(category_1):
+    assert category_1.name == 'Смартфоны'
+    assert category_1.description == 'телефоны с камерой и интернетом'
+    assert category_1.products == 'iphone, 1212руб. Остаток1212'
 
 
-@pytest.fixture
-def infinix():
-    return Product('infinix', 'note 30, blue-green-pink', 12000.0, 12)
+def test_category_products_getter(category_1):
+    assert category_1.products == 'iphone, 1212.0руб. Остаток 12'
 
 
-def test_product_price(infinix):
-    infinix.price = 15000.0
-    assert infinix.price == 15000.0
+def test_len_product(category_1):
+    assert len(category_1.products) == 1
+
+
+def test_add_sum():
+    phone = Product('infinix', 'green', 12000.0, 12)
+    phone_1 = Product('iphone', 'white', 12000.0, 12)
+    assert phone == 288000.0
