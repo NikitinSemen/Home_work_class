@@ -1,4 +1,27 @@
-class Product:
+from abc import ABC, abstractmethod
+
+
+class Goods(ABC):
+    pass
+
+    @abstractmethod
+    def get_name(self):
+        pass
+
+    @abstractmethod
+    def get_description(self):
+        pass
+
+    @abstractmethod
+    def get_price(self):
+        pass
+
+    @abstractmethod
+    def get_quantity(self):
+        pass
+
+
+class Product(Goods):
     """Класс продукт, с атрибутами:
     name = название продукта
     description = описание продукта
@@ -66,6 +89,7 @@ class Product:
         else:
             raise TypeError('Не совпадают классы')
 
+
 class Smartphone(Product):
     def __init__(self, name, description, price, quantity, performance, model, memory, color):
         super().__init__(name, description, price, quantity)
@@ -76,8 +100,10 @@ class Smartphone(Product):
 
 
 class GreenGrass(Product):
-    def __init__(self, name, description, price, quantity, country, germination, color):
+    def __init__(self, name, description, price, quantity=int, country=str, germination=str, color=str):
         super().__init__(name, description, price, quantity)
         self.country = country
         self.germination = germination
         self.color = color
+
+
