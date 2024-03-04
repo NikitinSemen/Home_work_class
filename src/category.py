@@ -1,7 +1,8 @@
 from src.products import Product
+from src.mixin_class import MixinRepr
 
 
-class Category:
+class Category(MixinRepr):
     """Класс Категории товаров с атрибутами :
     name = "Название категории товара
     description = описание категории товара
@@ -12,10 +13,9 @@ class Category:
     unique_products = set()
     unique_products_count = 0
 
-    def __init__(self,
-                 name: str,
-                 description: str,
-                 products: list[Product]):
+    def __init__(self, name: str, description: str, products: list[Product], *args, **kwargs):
+
+        super().__init__(*args, **kwargs)
         self.name = name
         self.description = description
         self.__products = products
@@ -43,3 +43,6 @@ class Category:
 
     def __str__(self):
         return f'{self.name}, количество продуктов: {len(self.__products)}'
+
+
+

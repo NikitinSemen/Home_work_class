@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from src.mixin_class import MixinRepr
 
 
 class Goods(ABC):
@@ -21,7 +22,7 @@ class Goods(ABC):
         pass
 
 
-class Product(Goods):
+class Product(Goods, MixinRepr):
     """Класс продукт, с атрибутами:
     name = название продукта
     description = описание продукта
@@ -90,7 +91,7 @@ class Product(Goods):
             raise TypeError('Не совпадают классы')
 
 
-class Smartphone(Product):
+class Smartphone(Product, MixinRepr):
     def __init__(self, name, description, price, quantity, performance, model, memory, color):
         super().__init__(name, description, price, quantity)
         self.performance = performance
@@ -99,8 +100,8 @@ class Smartphone(Product):
         self.color = color
 
 
-class GreenGrass(Product):
-    def __init__(self, name, description, price, quantity=int, country=str, germination=str, color=str):
+class GreenGrass(Product, MixinRepr):
+    def __init__(self, name, description, price, quantity, country, germination, color):
         super().__init__(name, description, price, quantity)
         self.country = country
         self.germination = germination
