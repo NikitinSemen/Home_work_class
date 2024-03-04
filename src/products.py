@@ -92,6 +92,11 @@ class Product(Goods, MixinRepr):
 
 
 class Smartphone(Product, MixinRepr):
+    """
+    Класс Смартфон. Класс наследуемый от класса продуктов для выдедения абстракции товара Смартфон
+
+    """
+
     def __init__(self, name, description, price, quantity, performance, model, memory, color):
         super().__init__(name, description, price, quantity)
         self.performance = performance
@@ -101,10 +106,12 @@ class Smartphone(Product, MixinRepr):
 
 
 class GreenGrass(Product, MixinRepr):
+    """
+    Класс Зеленая Трава. Класс наследуемый от класса продуктов для выдедения абстракции товара Зеленая Трава
+    """
+
     def __init__(self, name, description, price, quantity, country, germination, color):
         super().__init__(name, description, price, quantity)
         self.country = country
         self.germination = germination
         self.color = color
-
-
