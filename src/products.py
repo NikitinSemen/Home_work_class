@@ -21,6 +21,11 @@ class Goods(ABC):
     def get_quantity(self):
         pass
 
+    @classmethod
+    @abstractmethod
+    def add_product(cls, value):
+        pass
+
 
 class Product(Goods, MixinRepr):
     """Класс продукт, с атрибутами:
@@ -54,7 +59,7 @@ class Product(Goods, MixinRepr):
         return self.quantity
 
     @classmethod
-    def new_product(cls, value):
+    def add_product(cls, value):
         """
         Метод для добавления нового товара в класс
         """
