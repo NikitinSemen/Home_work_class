@@ -15,7 +15,6 @@ class Category(MixinRepr):
 
     def __init__(self, name: str, description: str, products: list[Product], *args, **kwargs):
 
-        super().__init__(*args, **kwargs)
         self.name = name
         self.description = description
         self.__products = products
@@ -23,6 +22,7 @@ class Category(MixinRepr):
         for product in products:
             Category.unique_products.add(product.name)
         Category.unique_products_count = len(Category.unique_products)
+        super().__init__(*args, **kwargs)
 
     def add_product(self, obj_product):
         """Добавляет обьект класса Product в список товара класса Category"""
@@ -43,6 +43,3 @@ class Category(MixinRepr):
 
     def __str__(self):
         return f'{self.name}, количество продуктов: {len(self.__products)}'
-
-
-

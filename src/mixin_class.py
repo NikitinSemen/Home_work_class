@@ -7,4 +7,5 @@ class MixinRepr:
         print(repr(self))
 
     def __repr__(self):
-        return f'{self.__class__.__name__} ({self.__dict__.items()}'
+        repr_file = [str(i[0]) + ': ' + str(i[1]) for i in self.__dict__.items()]
+        return f' Обьект класса {self.__class__.__name__} ({", ".join(repr_file)})'

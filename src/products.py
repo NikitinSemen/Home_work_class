@@ -34,14 +34,12 @@ class Product(Goods, MixinRepr):
     price = цена продукта
     quantity = количество продукта"""
 
-    def __init__(self, name: str,
-                 description: str,
-                 price: float,
-                 quantity: int):
+    def __init__(self, name: str, description: str, price: float, quantity: int):
         self.name = name
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
 
     def __str__(self):
         return f'{self.name}, {self.price}.руб. Остаток: {self.quantity} шт.'
@@ -103,11 +101,11 @@ class Smartphone(Product, MixinRepr):
     """
 
     def __init__(self, name, description, price, quantity, performance, model, memory, color):
-        super().__init__(name, description, price, quantity)
         self.performance = performance
         self.model = model
         self.memory = memory
         self.color = color
+        super().__init__(name, description, price, quantity)
 
 
 class GreenGrass(Product, MixinRepr):
@@ -116,7 +114,10 @@ class GreenGrass(Product, MixinRepr):
     """
 
     def __init__(self, name, description, price, quantity, country, germination, color):
-        super().__init__(name, description, price, quantity)
         self.country = country
         self.germination = germination
         self.color = color
+        super().__init__(name, description, price, quantity)
+
+
+phone = Product('infinix', 'green', 12000.0, 12)
