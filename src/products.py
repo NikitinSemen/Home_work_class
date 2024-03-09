@@ -61,6 +61,8 @@ class Product(Goods, MixinRepr):
         """
         Метод для добавления нового товара в класс
         """
+        if value['quantity'] == 0:
+            raise ValueError('Товар без количества не может быть добавлен')
         return cls(**value)
 
     @property
@@ -120,4 +122,10 @@ class GreenGrass(Product, MixinRepr):
         super().__init__(name, description, price, quantity)
 
 
-phone = Product('infinix', 'green', 12000.0, 12)
+prod = {
+    "name": "Samsung Galaxy C23 Ultra",
+    "description": "256GB, Серый цвет, 200MP камера",
+    "price": 180000.0,
+    "quantity": 0
+}
+Product.add_product(prod)
