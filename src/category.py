@@ -30,6 +30,17 @@ class Category(MixinRepr):
             self.__products.append(obj_product)
         Category.total += 1
 
+    def get_average(self):
+        total_sum = 0
+        total_quantity = 0
+        try:
+            for product in self.__products:
+                total_sum += product.price * product.quantity
+                total_quantity += product.quantity
+                return int(total_sum / total_quantity)
+        except ZeroDivisionError('В категории нет товаров'):
+            return 0
+
     def get_products(self):
         return self.__products
 
@@ -43,3 +54,11 @@ class Category(MixinRepr):
 
     def __str__(self):
         return f'{self.name}, количество продуктов: {len(self.__products)}'
+
+
+# phone = Product('infinix', 'green', 12000.0, 0)
+# green = Product('weed', 'nice weed', 15, 0)
+
+gugu = Category('телефоны', "хорошие")
+lala = gugu.get_average()
+print(lala)
